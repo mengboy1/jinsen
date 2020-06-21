@@ -79,7 +79,11 @@ pageEncoding="UTF-8"%>
       </ul>
     </li>
     <li><a href="infoCenter.jsp"><i class="icon icon-tint"></i> <span>信息中心</span></a></li>
-    <li><a href="superManage.jsp"><i class="icon icon-pencil"></i> <span>超级管理员</span></a></li>
+    <li class="submenu"><a href="#"><i class="icon icon-pencil"></i> <span>超级管理员</span><span class="label label-important">1</span></a>
+          <ul>
+        <li><a href="managerindex.jsp">人员信息管理</a></li>
+      </ul>
+    </li>
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">
         <div style="width: 77%;" class="bar"></div>
@@ -117,7 +121,7 @@ pageEncoding="UTF-8"%>
         <li class="bg_ls"> <a href="grid.html"> <i class="icon-fullscreen"></i> <span class="label label-important">3</span>伐区管理系统</a> </li>
         <li class="bg_lo span3"> <a href="form-common.html"> <i class="icon-th-list"></i> 信息中心</a> </li>
         <li class="bg_ls"> <a href="buttons.html"> <i class="icon-tint"></i> 超级管理员</a> </li>
-        <li class="bg_lb"> <a href="managerindex.jsp"> <i class="icon-pencil"></i>超级管理员</a> </li>
+        <li class="bg_lb"> <a href="managerindex.jsp"> <i class="icon-pencil"></i>人员信息管理</a> </li>
         <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> 日历</a> </li>
         <li class="bg_lr"> <a href="error404.html"> <i class="icon-info-sign"></i> Error</a> </li>
 
