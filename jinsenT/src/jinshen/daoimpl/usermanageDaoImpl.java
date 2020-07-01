@@ -403,6 +403,7 @@ public class usermanageDaoImpl implements usermanageDao
 	public usermanage login(usermanage u) 
 	{
 		Connection conn=db.getConnection();
+		System.out.println("Connect successly!");
 		String sql="select * from usermanage where staff_id=? and password=?";
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
