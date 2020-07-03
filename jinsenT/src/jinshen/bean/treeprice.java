@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//目前没用到
 public class treeprice {
 
 	private String tname;

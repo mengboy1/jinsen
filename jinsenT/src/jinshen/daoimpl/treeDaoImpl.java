@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import jinshen.bean.compareVolume;
 import jinshen.bean.inyard;
 import jinshen.bean.outyard;
 import jinshen.bean.tree;
@@ -174,11 +175,11 @@ public class treeDaoImpl implements treeDao {
 	}
 	@Override
 	public int addInyard(inyard cp) {
-		String sql = "insert into inyard values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into inyard values(?,?,?,?,?,?,?,?,?,?)";
 		int res=0;
 		try {
 			res=dbc.doUpdate(sql, new Object[] {cp.getWorkid(),cp.getCutNum(),cp.getYarddate(), cp.getCutSite(),
-					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor()});
+					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor(),cp.getTolTree(),cp.getTolStere()});
 		}
 		catch (Exception e) 
 		{
@@ -192,11 +193,11 @@ public class treeDaoImpl implements treeDao {
 	
 	@Override
 	public int addOutyard(outyard cp) {
-		String sql = "insert into outyard values(?,?,?,?,?,?)";
+		String sql = "insert into outyard values(?,?,?,?,?,?,?,?)";
 		int res=0;
 		try {
 			res=dbc.doUpdate(sql, new Object[] {cp.getWorkid(),cp.getYarddate(),
-					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor()});
+					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor(),cp.getTolTree(),cp.getTolStere()});
 		}
 		catch (Exception e) 
 		{
@@ -212,9 +213,9 @@ public class treeDaoImpl implements treeDao {
 	public int updateInyard(inyard cp) {
 		int res=0;
 		try {
-			String sql="update inyard set workid=?,cutNum=?,yarddate=?,cutSite=?,carNumber=?,yard=?,batchNum=?,surveyor=?";
+			String sql="update inyard set workid=?,cutNum=?,yarddate=?,cutSite=?,carNumber=?,yard=?,batchNum=?,surveyor=?,toltree=?,tolstere=?";
 			res=dbc.doUpdate(sql, new Object[] {cp.getWorkid(),cp.getCutNum(),cp.getYarddate(), cp.getCutSite(),
-					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor()});
+					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor(),cp.getTolTree(),cp.getTolStere()});
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -227,7 +228,7 @@ public class treeDaoImpl implements treeDao {
 	public int updateOutyard(outyard cp) {
 		int res=0;
 		try {
-			String sql="update outyard set workid=?,yarddate=?,carNumber=?,yard=?,batchNum=?,surveyor=?";
+			String sql="update outyard set workid=?,yarddate=?,carNumber=?,yard=?,batchNum=?,surveyor=?,toltree=?,tolstere=?";
 			res=dbc.doUpdate(sql, new Object[] {cp.getWorkid(),cp.getYarddate(),
 					cp.getCarNumber(),cp.getYard(), cp.getBatchNum(), cp.getSurveyor()});
 		}catch (Exception e) 
@@ -268,6 +269,8 @@ public class treeDaoImpl implements treeDao {
 				addr.setYard(rs.getString(6));
 				addr.setBatchNum(rs.getDouble(7));
 				addr.setSurveyor(rs.getString(8));
+				addr.setTolTree(rs.getDouble(9));
+				addr.setTolStere(rs.getDouble(10));
 			}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -286,8 +289,10 @@ public class treeDaoImpl implements treeDao {
 				addr.setYarddate(rs.getDate(2));
 				addr.setCarNumber(rs.getString(3));
 				addr.setYard(rs.getString(4));
-				addr.setBatchNum(rs.getDouble(5));
+				addr.setBatchNum(rs.getString(5));
 				addr.setSurveyor(rs.getString(6));
+				addr.setTolTree(rs.getDouble(7));
+				addr.setTolStere(rs.getDouble(8));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -308,6 +313,24 @@ public class treeDaoImpl implements treeDao {
 			dbc.close();
 		}
 		return res;
+	}
+	
+	@Override
+	public compareVolume findVolume(String sql)
+	{
+		compareVolume addr=new compareVolume();
+		try {
+			ResultSet rs=dbc.doQuery(sql, new Object[] {});
+			while(rs.next()) {
+				addr.setTolstere(rs.getDouble(1));
+				//addr.setcutstore(rs.getDouble(2));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbc.close();
+		}
+		return addr;
 	}
 
 }

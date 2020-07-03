@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于把销售的木材信息显示在销售管理员页面上
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

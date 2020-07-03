@@ -5,14 +5,10 @@ pageEncoding="UTF-8"%>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>人员信息管理</title>
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="js/jQueryCalendar/calendar.css">
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-
     <!-- font-awesome icons CSS -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome icons CSS-->
@@ -40,11 +36,9 @@ pageEncoding="UTF-8"%>
             margin-top: 35px;}
         .table_p span{border-bottom: 3px #42cdec solid;display: inline-block;position: absolute;bottom: -1px;font-weight: bold;font-size: 20px}
         .but_p button{width: 80px}
-.all {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
+body {
+	overflow-x: hidden;
+	margin-top: -10px; font-family: 'Open Sans', sans-serif; font-size:20px; color:#666;
 }
     </style>
 </head>
@@ -83,9 +77,9 @@ pageEncoding="UTF-8"%>
 </div>
 <!--close-top-Header-menu-->
 <!--sidebar-menu-->
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 仪表盘</a>
+<div id="sidebar" style="font-size:18px"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 仪表盘</a>
   <ul>
-   <li><a href="superManage.jsp"><i class="icon icon-home"></i> <span>返回超级管理员界面</span></a> </li>
+   <li><a href="superManage.jsp"><i class="icon icon-home" font-size="20px"></i> <span>返回超级管理员界面</span></a> </li>
     <li class="active"><a href="managerindex.jsp"><i class="icon icon-th-list"></i> <span>用户管理</span></a> </li>
     <li> <a href="rolemanage.jsp"><i class="icon icon-inbox"></i> <span>角色管理</span></a> </li>
     </ul>
@@ -98,7 +92,7 @@ pageEncoding="UTF-8"%>
   </div>
 <!--End-breadcrumbs-->
 
-<main class="all">>
+<main class="all">
     <article class="artlce">
         <section class="section">
             <iframe class="ifraem-style" frameborder="0" src="usermanage2.jsp" name="fraName"></iframe>

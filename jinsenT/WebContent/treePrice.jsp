@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 销售结算页面 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +8,9 @@
     <title>木材销售</title>
     <link rel="stylesheet" href="js/bstable/css/bootstrap.min.css">
     <link rel="stylesheet" href="js/bstable/css/bootstrap-table.css">
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/tableall.css">
     <link rel="stylesheet" href="js/jQueryCalendar/calendar.css">
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
 
     <!-- font-awesome icons CSS -->
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -49,7 +47,7 @@ function mycreate()
 	var workid=document.getElementById("workid").value;
 	if(workid=="")
 	{
-	    alert("请输入劳务表号！");
+	    alert("请输入销售工单号！");
 	}
    else
 	{
@@ -246,7 +244,6 @@ function treeAdd()
   </div>
 <main>
     <article class="artlce">
-    <div class="home-tab"><i class="tab-i"></i> 所在位置：<span>木材销售</span></div>
     <div class="find-top">
         <p class="p-tail"><i class="i-tail"></i>该界面是生成木材销售的主要界面</p>
     </div>
@@ -261,7 +258,7 @@ function treeAdd()
         </table>
         <table class="top-table" >
          <tr><td colspan="6" style="margin-top: 10px;margin-bottom: 10px">
-        <button class="add-del" onclick="mycreate()"><i class="glyphicon glyphicon-remove"></i>生成</button></td>
+        <button class="add-but" onclick="mycreate()"><i class="glyphicon glyphicon-remove"></i>生成</button></td>
         </tr>
         </table>
         <div id="mysomething">

@@ -1,5 +1,5 @@
 package jinshen.action;
-
+/*管理权限和部门人员servlet*/
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -213,6 +213,7 @@ public class managerServlet extends HttpServlet {
 		{
 			System.out.println("in login");
 			String staff_id=request.getParameter("staff_id");
+			request.getSession().setAttribute("staff_id",staff_id);
 			String password=request.getParameter("password");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 			String createtime=format.format(new Date());

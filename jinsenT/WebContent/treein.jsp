@@ -1,27 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="jinshen.bean.*" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>输入进场木材数据</title>
- <link rel="stylesheet" href="js/jQueryCalendar/calendar.css">
- <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
- <!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!--  <link rel="stylesheet" href="css/all.css">-->
+    <link rel="stylesheet" href="js/jQueryCalendar/calendar.css">
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-<!-- font-awesome icons CSS -->
-<link href="css/font-awesome.css" rel="stylesheet">
-<!-- //font-awesome icons CSS-->
+    <!-- font-awesome icons CSS -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons CSS-->
 
-<!-- side nav css file -->
-<link href='css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
-<!-- js-->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
-<!-- jQuery.print -->
-<script src="js/jQuery.print.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- side nav css file -->
+    <link href='css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <!-- js-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <!-- jQuery.print -->
+	<script src="js/jQuery.print.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="css/fullcalendar.css" />
@@ -31,7 +32,6 @@
 <link rel="stylesheet" href="css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 <link type="text/css" rel="stylesheet" href="css/PrintArea.css" />
-<link type="text/css" rel="stylesheet" href="css/registe.css"/>
     
     <style>
     body,td,th {font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 18px;color: #1d1007; line-height:24px}
@@ -45,14 +45,60 @@
         #h li{float: left; }
 #h a{font-size:15px;width: 230px; height: 30px;padding: 10px 0;text-align: center;  background: #3c763d; display: block; text-decoration:none; color:white}
 #h a:hover{color:white;background: green}
-         .table1{width:60%; height:400px;margin-left:auto; margin-right:auto;padding:10px;border-collapse:collapse}
-         td,th{text-align:center;vertical-align:middle}
-         tr{text-align:center}
+.table1{margin-left:auto; margin-right:auto;padding:10px;border-collapse:collapse}
     </style>
 </head>
 <body>
 <script type="text/javascript">
-/*function vvvolume(id)
+var k=Number(1);
+$(function(){
+	aaad();
+})
+function aaad()
+{
+ 	var str="<tr id="+k+" display:block;><td style='font-size:20px;'><input type='checkbox' style='width:20px;height:20px;' value="+k+">树材种<span></span>"
+          +"<select style='width: 180px' name='treetype' id='sss"+k+"'>"
+           +"<option>--请选择--</option>"
+          +"<option value='杉原木'>--杉原木--</option>"
+          +"<option value='杉小径'>--杉小径--</option>"
+          +"<option value='松原木'>--松原木--</option>"
+          +"<option value='松小径'>--松小径--</option>"
+          +"<option value='杂原木'>--杂原木--</option>"
+          +"<option value='杂小径'>--杂小径--</option></select>"
+        +"检尺长(m)<span></span><input type='text' style='width: 180px' name='tdouble' id='td"+k+"'>检尺径<span></span>"
+          +"<input type='text' style='width: 180px' name='tradius' id='tr"+k+"'>根数<span></span><input type='text' style='width: 180px' name='num' id='n"+k+"'>"
+             +"材积(m^3、T、根)<span></span><input type='text' style='width: 180px' name='tvolume' id='tv"+k+"' onclick='vvvolume("+k+")'></td></tr>";
+             k=Number(k)+Number(1);
+            $("#ttt5").append(str); 
+             
+}
+function dddelete()
+{
+	var ck= $("input[type='checkbox']:checked");
+	for (var i=0;i<ck.length;i++)
+		{
+		     var j=$(ck[i]).val();
+		     alert(j);
+		     $("#"+j+"").empty();
+		}
+}
+function deleteAll()
+{
+	var mk=$("input[type='checkbox']:checked");
+	var index=$("input[type='checkbox']:not(:checked)");
+	for (var i=0;i<mk.length;i++)
+    {
+	    var h=$(mk[i]).val();
+	    
+	     $("#"+h+"").empty();
+	}
+   for (var a=0;a<index.length;a++)
+	{
+	    var hh=$(index[a]).val();
+	    $("#"+hh+"").empty();
+	}
+}
+function vvvolume(id)
 {
 	var td=$("#td"+id+"").val();
 	var tr=$("#tr"+id+"").val();
@@ -72,32 +118,8 @@
         	document.getElementById("tv"+id+"").value=Number(data*num);
         }
     })}
-	}*/
-function vvvolume()
-	{
-		var td=$("#td").val();
-		var tr=$("#tr").val();
-		var num=$("#n").val();
-		if(num!="" && td!="" && tr!="")
-		{
-			$.ajax({
-		        url:"treeServlet",
-		        data:{
-		            "action":"volume",
-		            "td":td,
-		            "tr":tr 
-		        },
-		        type: "POST",
-		        dataType:"html",
-		        success: function (data) {
-		        	document.getElementById("tv").value=Number(data*num);
-		        }
-	  })}
 	}
-
-/*var el = document.getElementById("tv");
-	el.addEventListener("click", vvvolume, false);*/
-/*function makecount()
+function makecount()
 {
 	var mk=$("input[type='checkbox']:checked");
 	var index=$("input[type='checkbox']:not(:checked)");
@@ -120,23 +142,80 @@ function vvvolume()
 	}
    document.getElementById("toltree").value=Number(totalt+tot);
    document.getElementById("tolstere").value=Number(totalst+total);
-}*/
-
-function makecount()
-{
-	var n=$("#n").val();
-	var tv=$("#tv").val();
-	var totalt=Number(0);
-	var totalst=Number(0);
-	var total=Number(0);
-	var tot=Number(0);
-	//System.out.println("...." + mk + "...");
-	     totalst+=Number(document.getElementById("tv").value);
-		 totalt+=Number(document.getElementById("n").value);
-   document.getElementById("toltree").value=Number(totalt);
-   document.getElementById("tolstere").value=Number(totalst);
 }
-
+function treeAdd()
+{
+	var map={};
+	var kk=Number(0),ki=Number(0);
+	var workid=$("#wworkid").val();
+	var cutnum=$("#ccutnum").val();
+	//var cutnum=document.getElementById("cutnum").value;
+	if(workid=="")
+		{
+		alert("请先输入码单号！");
+		}
+	else{
+    $("input[type='checkbox']:checked").each(function(i){
+    	var group=[];
+    	var id=$(this).val();
+    	alert(id);
+    	    group[0]=document.getElementById("sss"+id+"").value;
+    	    group[1]=document.getElementById("td"+id+"").value;
+    	    group[2]=document.getElementById("tr"+id+"").value;
+    	    group[3]=document.getElementById("n"+id+"").value;
+    	    group[4]=document.getElementById("tv"+id+"").value;
+    	    //System.out.println("...." + group[4] + "...");
+    	    if(group[0]==""|| group[1]==""|| group[2]=="" || group[3]==""|| group[4]=="")
+    	    	{
+    	    	alert("请将信息填写完整！");
+    	    	}
+    	      else{
+               map[i]=group;
+               kk=Number(i)+Number(1);
+    	    }
+    });
+    $("input[type='checkbox']:not(:checked)").each(function(j){
+    	var group=[];
+    	var id=$(this).val();
+    	    group[0]=document.getElementById("sss"+id+"").value;
+    	    group[1]=document.getElementById("td"+id+"").value;
+    	    group[2]=document.getElementById("tr"+id+"").value;
+    	    group[3]=document.getElementById("n"+id+"").value;
+    	    group[4]=document.getElementById("tv"+id+"").value;
+    	    if(group[0]=="" || group[1]=="" ||group[2]=="" || group[3]=="" || group[4]=="")
+	    	{
+	    	alert("请将信息填写完整！");
+	    	}
+	        else{ 
+        map[kk+j]=group;
+        ki=Number(j)+Number(1);
+	    }
+    }); 
+    var mymap=JSON.stringify(map);
+    $.ajax({
+        url:"treeServlet",
+        data:{
+            "action":"treeAdd1",
+            "newtree":mymap,
+            "id":ki+kk,
+            "workid":workid,
+            "cutnum":cutnum
+        },
+        type: "POST",
+        dataType:"html",
+        success: function (data) {
+        	alert(data);
+        	/*if(data>0)
+        		{
+        	        alert("添加成功！");
+        		}
+        	else{
+        		 alert("请检查输入的材积是否已经超标");
+        	}*/
+        }
+    })
+    }
+}
 function inputNull(form){
 	for(i=0;i<form.length;i++){
             //form属性的elements的首字母e要小写
@@ -195,7 +274,6 @@ function inputNull(form){
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>异常处理</span></a> </li>
   </ul>
 </div>
-<!--main-container-part-->
 <!--sidebar-menu-->
 <!--main-container-part-->
 <div id="content">
@@ -204,96 +282,75 @@ function inputNull(form){
   </div>
     <article class="artlce">
         <div class="book_con01">
-            <form  onSubmit="return inputNull(this)" action="codepageSevrlet?action=addCodepage" method="POST" >
-            <div class="top" id="divprint">
-               <div class="top_out">
-                       <table class="table1" border="1">
-                       <caption class="book_h01">录入进场木材数据</caption>
+            <h1 class="book_h01">录入进场木材信息</h1>
+            <form  onSubmit="return inputNull(this)" action="treeServlet?action=inyard" method="POST" >
+            <div id="divprint">
+                <div class="top">
+                <p class="table_p"><span>进场信息输入</span></p>
+                       <table class="table1">
                          <tr>
-                         <th colspan="2">工单号</th>
-                         <th>采伐证号</th>
-                         <th>采伐地点</th>
-                         <th>进场时间</th>
-                         </tr>
-                         <tr>
-                         <td colspan="2"><input type="text" name="workid" id="wworkid" placeholder="工单号"></td>
-                         <td><input type="text" name="cutnum" id="ccutnum" placeholder="采伐证号"></td>
-                         <td><input type="text" name="cutsite" id="ccutsite" placeholder="采伐地点"></td>
-                         <td><input type="date" name="yarddate" id="yyarddate" placeholder="进场时间"></td>
-                         </tr>
-                         <tr>
-                         <th colspan="2">货场地点</th>
-                         <th>车牌号</th>
-                         <th>批次号</th>
-                         <th>检尺员</th>
-                         </tr>
-                         <tr>
-                         <td colspan="2"><input type="text" name="yard" id="yyard" placeholder="货场地点"></td>
-                         <td><input type="text" name="carnumber" id="ccarnumber" placeholder="车牌号"></td>
-                         <td><input type="text" name="batchnum" id="bbatchnum" placeholder="批次号"></td>
-                         <td><input type="text" name="surveyor" id="ssurveyor" placeholder="检尺员"></td>
-                         </tr>
-                         <tr>
-                         <th>树材种</th>
-                         <th>检尺长</th>
-                         <th>检尺径</th>
-                         <th>根数</th>
-                         <th>材积</th>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss' placeholder="树材种"></td>
-                         <td><input type='text' style='width: 180px' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: 180px' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: 180px' name='num' id='n'></td>
-                         <td><input type='text' style='width: 180px' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss'></td>
-                         <td><input type='text' style='width: auto' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: auto' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: auto' name='num' id='n'></td>
-                         <td><input type='text' style='width: auto' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss'></td>
-                         <td><input type='text' style='width: auto' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: auto' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: auto' name='num' id='n'></td>
-                         <td><input type='text' style='width: auto' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss'></td>
-                         <td><input type='text' style='width: auto' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: auto' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: 180px' name='num' id='n'></td>
-                         <td><input type='text' style='width: 180px' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss'></td>
-                         <td><input type='text' style='width: auto' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: auto' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: auto' name='num' id='n'></td>
-                         <td><input type='text' style='width: auto' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr>
-                         <td><input type="text" name='treetype' id='sss'></td>
-                         <td><input type='text' style='width: auto' name='tdouble' id='td'></td>
-                         <td><input type='text' style='width: auto' name='tradius' id='tr'></td>
-                         <td><input type='text' style='width: auto' name='num' id='n'></td>
-                         <td><input type='text' style='width: auto' name='tvolume' id='tv' onclick='vvvolume()'></td>
-                         </tr>
-                         <tr >
-                              <td colspan="2" style="font-size:20px;width:auto">合计树材<span></span>
-                                 <input type="text" style="width:120px; font-size:20px" name="toltreesmall" id="toltree" onclick="makecount()">
-                                    根(块、件)<span></span></td>
-                               <td colspan="3" style="font-size:20px">合计树材<span></span>
-                                  <input type="text" style="width:120px; font-size:20px" name="tolsteresmall" id="tolstere">
-                                   立方米(吨、根)<span></span></td>
+                         <td>工单号<span></span></td>
+                          <td>
+                          <input type="text" name="workid" id="wworkid" placeholder="工单号">
+                          </td>
+                          <td>采伐证号<span></span></td>
+                          <td>
+                          <input type="text" name="cutnum" id="ccutnum" placeholder="采伐证号">
+                           </td>
+                           <td>采伐地点<span></span></td>
+                          <td>
+                          <input type="text" name="cutsite" id="ccutsite" placeholder="采伐地点">
+                           </td>
+                           <td>进场时间<span></span></td>
+                              <td>
+                              <input type="date" name="yarddate" id="yyarddate" placeholder="进场时间">
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>货场地点<span></span></td>
+                              <td>
+                              <input type="text" name="yard" id="yyard" placeholder="货场地点">
+                              </td>
+                              <td>车牌号<span></span></td>
+                              <td>
+                              <input type="text" name="carnumber" id="ccarnumber" placeholder="车牌号">
+                              </td>
+                              <td>批次号<span></span></td>
+                               <td>
+                                   <input type="text" name="batchnum" id="bbatchnum" placeholder="批次号"></td>
+                              <td>检尺员<span></span></td>
+                                   <td><input type="text" name="surveyor" id="ssurveyor" placeholder="检尺员"></td>
+                           </tr>
+                        </table>
+                        <p class="table_p"><span>树材信息录入</span></p>
+                        <table class="table" id="table5" style="width:1500px;height:auto">
+                           <tbody id="ttt5">
+                                
+                            </tbody>
+                            </table>
+                            <table>
+                            <tr>
+               <div style="float:left;"><button class="btn btn-warning" type="button"  onclick="aaad()" value="添加">添加</button>
+               <button class="btn btn-default" type="button"  onclick="dddelete()" value="删除">删除</button>
+          <button class="btn btn-default" type="button"  onclick="deleteAll()" value="清空">清空</button>
+          <button class="btn btn-default" type="button"  onclick="treeAdd()" value="提交">提交</button>
+          </div>
+               </tr>
+                        </table>     
+                            <table class="table" >
+                                <tbody>
+                                <p class="table_p" style="margin-top: 65px;"><span>合计信息</span></p>
+                                <tr>
+                                    <td style="font-size:20px;width:auto">合计树材<span></span>
+                                        <input type="text" style="width:120px; font-size:20px" name="toltree" id="toltree" onclick="makecount()">根(块、件)<span></span></td>
+                                    <td style="font-size:20px">合计树材<span></span>
+                                        <input type="text" style="width:120px; font-size:20px" name="tolstere" id="tolstere">立方米(吨、根)<span></span></td>
                                 </tr>
-                        </table> 
+                                </tbody>
+                            </table>
                         </div>
-                        </div>
-                        <div class=" but_p" style="float:right;"><button class="but_save" type="submit" id="mybutton" value="保存工单">保存工单</button></div>
+                    </div>
+                  <div class=" but_p" style="float:right;"><button class="but_save" type="submit" id="mybutton" value="保存工单">保存工单</button></div>
                  <input style="float:right;" type="button" id="btnPrint" value="打印"/>   
                 <div style="clear: both;padding-bottom: 40px"></div>
             </form>

@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于销售部门把销售木材信息存到saleman数据库中
 public class salemansql {
 	private double workid;
 	private String treetype;

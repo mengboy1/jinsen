@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于木材进场数据保存至数据库
 import java.sql.Date;
 
 public class inyard {
@@ -11,6 +11,8 @@ public class inyard {
 	private String yard;
 	private double batchNum;
 	private String surveyor;
+	private double toltree;
+	private double tolstere;
 	public double getWorkid() {
 		return workid;
 	}
@@ -62,5 +64,17 @@ public class inyard {
    public void setSurveyor(String surveyor) {
    	this.surveyor = surveyor;
    }
+   public double getTolTree() {
+		return toltree;
+	}
+	public void setTolTree(double toltree) {
+		this.toltree = toltree;
+	}
+	public double getTolStere() {
+		return tolstere;
+	}
+	public void setTolStere(double tolstere) {
+		this.tolstere = tolstere;
+	}
 
 }

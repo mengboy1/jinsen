@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于进场是保存木材信息数据到数据库tree中
 public class tree {
 
 	private String treetype;
