@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<title>木材产销管理平台导航</title>
+<title>超级管理平台导航</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -14,6 +14,9 @@ pageEncoding="UTF-8"%>
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<script src="js/echarts.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -61,7 +64,7 @@ pageEncoding="UTF-8"%>
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 仪表盘</a>
   <ul>
-    <li class="active"><a href="managerP.jsp"><i class="icon icon-home"></i> <span>管理部门系统</span></a> </li>
+    <li><a href="managerP.jsp"><i class="icon icon-home"></i> <span>管理部门系统</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>产销系统</span> <span class="label label-important">2</span></a>
        <ul>
         <li><a href="forestP.jsp">生产部门</a></li>
@@ -79,24 +82,12 @@ pageEncoding="UTF-8"%>
       </ul>
     </li>
     <li><a href="infoCenter.jsp"><i class="icon icon-tint"></i> <span>信息中心</span></a></li>
-    <li class="submenu"><a href="#"><i class="icon icon-pencil"></i> <span>超级管理员</span><span class="label label-important">1</span></a>
+    <li class="submenu"><a href="#"><i class="icon icon-pencil"></i> <span>超级管理员</span><span class="label label-important">3</span></a>
           <ul>
         <li><a href="managerindex.jsp">人员信息管理</a></li>
+        <li><a href="treeoutTable.jsp">木材销售报表</a>
+        <li><a href="producetreeTable.jsp">木材产出报表</a>
       </ul>
-    </li>
-    <li class="content"> <span>Monthly Bandwidth Transfer</span>
-      <div class="progress progress-mini progress-danger active progress-striped">
-        <div style="width: 77%;" class="bar"></div>
-      </div>
-      <span class="percent">77%</span>
-      <div class="stat">21419.94 / 14000 MB</div>
-    </li>
-    <li class="content"> <span>Disk Space Usage</span>
-      <div class="progress progress-mini active progress-striped">
-        <div style="width: 87%;" class="bar"></div>
-      </div>
-      <span class="percent">87%</span>
-      <div class="stat">604.44 / 4000 MB</div>
     </li>
   </ul>
 </div>
@@ -114,16 +105,15 @@ pageEncoding="UTF-8"%>
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>管理系统 </a> </li>
-        <li class="bg_lg span3"> <a href="#"><i class="icon-signal"></i> <span>产销系统</span> <span class="label label-important">2</span></a></li>
-        <li class="bg_ly"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success"></span> 货场管理系统 </a> </li>
-        <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> 生产业主系统</a> </li>
-        <li class="bg_ls"> <a href="grid.html"> <i class="icon-fullscreen"></i> <span class="label label-important">3</span>伐区管理系统</a> </li>
-        <li class="bg_lo span3"> <a href="form-common.html"> <i class="icon-th-list"></i> 信息中心</a> </li>
-        <li class="bg_ls"> <a href="buttons.html"> <i class="icon-tint"></i> 超级管理员</a> </li>
+        <li class="bg_lb"> <a href="managerP.jsp"> <i class="icon-dashboard"></i>管理系统 </a> </li>
+        <li class="bg_lg span3"> <a href="forestP.jsp"><i class="icon-signal"></i> <span>产销系统</span> <span class="label label-important">2</span></a></li>
+        <li class="bg_ly"> <a href="salaryper.jsp"> <i class="icon-inbox"></i><span class="label label-success"></span> 销售管理系统 </a> </li>
+        <li class="bg_lo"> <a href="productowner.jsp"> <i class="icon-th"></i> 生产业主系统</a> </li>
+        <li class="bg_ls"> <a href="Surveyor.jsp"> <i class="icon-fullscreen"></i> <span class="label label-important">3</span>伐区管理系统</a> </li>
+        <li class="bg_lo span3"> <a href="infoCenter.jsp"> <i class="icon-th-list"></i> 信息中心</a> </li>
+        <li class="bg_ls"> <a href="treeoutTable.jsp"> <i class="icon-tint"></i>木材销售报表</a> </li>
         <li class="bg_lb"> <a href="managerindex.jsp"> <i class="icon-pencil"></i>人员信息管理</a> </li>
-        <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> 日历</a> </li>
-        <li class="bg_lr"> <a href="error404.html"> <i class="icon-info-sign"></i> Error</a> </li>
+        <li class="bg_lg span3"> <a href="producetreeTable.jsp"> <i class="icon-calendar"></i>木材产出报表</a> </li>
 
       </ul>
     </div>
@@ -137,18 +127,274 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
-            <div class="span9">
-              <div class="chart"></div>
+            <div class="span9" id="chartmain" style="width:1000px;height:400px; display:inline-block">
+              <script type="text/javascript">
+//折线销售价格
+function loadDate(option){
+$.ajax({
+	type:"get",
+	async : false,
+	url:"chartServlet?action=treechart",
+    data:{},
+    dataType:"json",
+    success:function(result){
+    	if(result){
+    		option.xAxis[0].data=[];
+    		 for(var i=0;i<result.length;i++){
+    			 option.xAxis[0].data.push(result[i].yarddate);
+    			 //yarddate.push(result[i].yarddate);
+                 //names.push(result[i].name);
+    			 //alert(result[i].yarddate);
+               }
+    		  option.series[0].data=[];
+               for(var i=0;i<result.length;i++){
+            	   option.series[0].data.push(result[i].price);
+            	   //price.push(result[i].price);
+            	   //alert(result[i].price);
+               }
+        }
+     },
+     error : function(errorMsg) {
+          //请求失败时执行该函数
+      alert("图表请求数据失败!");
+      //mychart.hideLoading();
+    }
+})
+}
+
+
+var mychart = echarts.init(document.getElementById('chartmain'));
+var option={
+		title:{
+			text:"木材销售"
+		},
+		tooltip:{
+			show: true
+		},
+		dataZoom: {
+            show: true,
+            realtime: true,
+            //type: 'inside'
+            //startValue: '2009-09-20 12:00',
+            //end: 100
+        },
+		grid: {
+            containLabel: true
+        },
+		legend:{
+			data:['销量']
+		
+		},
+		xAxis:[{
+			type: 'category',
+		        //data: [],
+		}],
+		yAxis : [ {
+			type : 'value',
+			axisLabel: {
+		        formatter: '{value} 元'
+		        },
+		} ],
+		series : [ {
+			name : '销量',
+			type : 'line',
+			color: 'green',
+            smooth: true,
+           // data:[]
+		} ]
+};
+     //加载数据到option
+       loadDate(option);
+       //设置option
+      mychart.setOption(option);
+     </script>
+          </div> 
+          <div class="span3">
+              <div id="tab1" class="tab-pane active">             
+              <img src="img/森林.jpg" alt="demo-image"/>
+               <p>金森林业有限公司木材产销软件超级管理员平台</p>
+              </div>
             </div>
-            <div class="span3">
-              <ul class="site-stats">
-                <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
-                <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
-                <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
-                <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
-                <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
-                <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
-              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--End-Chart-box--> 
+
+<!--Chart-box-->    
+    <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+          <h5>木材库存分析</h5>
+        </div>
+        <div class="widget-content" >
+          <div class="row-fluid">
+            <div class="" id="myPieDiv" style="width:45%;height:400px; display:inline-block">
+              <script type="text/javascript">
+              function loadDate(option){
+            		$.ajax({
+            			type:"get",
+            			async : false,
+            			url:"chartServlet?action=treetype",
+            		    data:{},
+            		    dataType:"json",
+            		    success:function(result){
+            		    	if(result){
+            		    		option.xAxis[0].data=[];
+            		    		 for(var i=0;i<result.length;i++){
+            		    			 option.xAxis[0].data.push(result[i].treetype);
+            		    			 //yarddate.push(result[i].yarddate);
+            		                 //names.push(result[i].name);
+            		    			 //alert(result[i].yarddate);
+            		               }
+            		    		  option.series[0].data=[];
+            		               for(var i=0;i<result.length;i++){
+            		            	   option.series[0].data.push(result[i].num);
+            		            	   //price.push(result[i].price);
+            		            	   //alert(result[i].price);
+            		               }
+            		        }
+            		     },
+            		     error : function(errorMsg) {
+            		          //请求失败时执行该函数
+            		      alert("图表请求数据失败!");
+            		      //mychart.hideLoading();
+            		    }
+            		})
+            		}
+
+
+            		var mychart = echarts.init(document.getElementById('myPieDiv'));
+            		var option={
+            				title:{
+            					text:"木材库存"
+            				},
+            				tooltip:{
+            					show: true
+            				},
+            				grid: {
+            		            containLabel: true
+            		        },
+            				legend:{
+            					data:['数量']
+            				
+            				},
+            				xAxis:[{
+            					type: 'category',
+            				        //data: [],
+            				}],
+            				yAxis : [ {
+            					type : 'value',
+            					axisLabel: {
+            				        formatter: '{value} 根'
+            				        },
+            				} ],
+            				series : [ {
+            					name : '数量',
+            					type : 'bar',
+            					color: 'red',
+            		            smooth: true,
+            		           // data:[]
+            				} ]
+            		};
+            		//加载数据到option
+            		loadDate(option);
+            		//设置option
+            		mychart.setOption(option);
+          </script>
+            </div>
+            <div class="" id="myline" style="width:45%;height:400px;display:inline-block">
+              <script type="text/javascript">
+              function loadDate(option){
+            		$.ajax({
+            			type:"get",
+            			async : false,
+            			url:"chartServlet?action=treeout",
+            		    data:{},
+            		    dataType:"json",
+            		    success:function(result){
+            		    	if(result){
+            		    		option.xAxis[0].data=[];
+            		    		 for(var i=0;i<result.length;i++){
+            		    			 option.xAxis[0].data.push(result[i].treetype);
+            		    			 //yarddate.push(result[i].yarddate);
+            		                 //names.push(result[i].name);
+            		    			 //alert(result[i].yarddate);
+            		               }
+            		    		  option.series[0].data=[];
+            		    		  option.series[1].data=[];
+            		               for(var i=0;i<result.length;i++){
+            		            	   option.series[0].data.push(result[i].num);
+            		            	   option.series[1].data.push(result[i].price)
+            		            	   //price.push(result[i].price);
+            		            	   //alert(result[i].price);
+            		               }
+            		        }
+            		     },
+            		     error : function(errorMsg) {
+            		          //请求失败时执行该函数
+            		      alert("图表请求数据失败!");
+            		      //mychart.hideLoading();
+            		    }
+            		})
+            		}
+
+
+            		var mychart = echarts.init(document.getElementById('myline'));
+            		var option={
+            				title:{
+            					text:"卖出木材情况"
+            				},
+            				tooltip:{
+            					show: true
+            				},
+            				grid: {
+            		            containLabel: true
+            		        },
+            				legend:{
+            					data:['数量','销售']
+            		            
+            				
+            				},
+            				xAxis:[{
+            					type: 'category',
+            				        //data: [],
+            				}],
+            				yAxis : [ {
+            					type : 'value',
+            					axisLabel: {
+            				        formatter: '{value} 根'
+            				        },
+            				},
+            				{
+            	                type: 'value',
+            	                name: '销售',
+            	                axisLabel: {
+            	                    formatter: '{value} 元'
+            	                }
+            	            }
+            				
+            				],
+            				series : [ {
+            					name : '数量',
+            					type : 'bar',
+            					color: 'blue',
+            		            smooth: true,
+            		           // data:[]
+            				},
+            					{
+            	                    name:'销售',
+            	                    type:'line',
+            	                    color: 'red',
+            	                    yAxisIndex: 1,
+            	                }
+            				]
+            		};
+            		//加载数据到option
+            		loadDate(option);
+            		//设置option
+            		mychart.setOption(option);
+             </script>
             </div>
           </div>
         </div>
@@ -413,6 +659,8 @@ pageEncoding="UTF-8"%>
 <script src="js/jquery.min.js"></script> 
 <script src="js/jquery.ui.custom.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
 <script src="js/jquery.flot.min.js"></script> 
 <script src="js/jquery.flot.resize.min.js"></script> 
 <script src="js/jquery.peity.min.js"></script> 

@@ -48,8 +48,7 @@ function inputNull(form){
 
 </head>
 <body
-<% workpage c=(workpage)request.getAttribute("workpage"); 
-%>>
+<% workpage c=(workpage)request.getAttribute("workpage");%>>
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">产销部门平台</a></h1>
@@ -98,20 +97,6 @@ function inputNull(form){
      </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>异常处理</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>生产结算</span></a></li>
-    <li class="content"> <span>Monthly Bandwidth Transfer</span>
-      <div class="progress progress-mini progress-danger active progress-striped">
-        <div style="width: 77%;" class="bar"></div>
-      </div>
-      <span class="percent">77%</span>
-      <div class="stat">21419.94 / 14000 MB</div>
-    </li>
-    <li class="content"> <span>Disk Space Usage</span>
-      <div class="progress progress-mini active progress-striped">
-        <div style="width: 87%;" class="bar"></div>
-      </div>
-      <span class="percent">87%</span>
-      <div class="stat">604.44 / 4000 MB</div>
-    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -219,7 +204,7 @@ function inputNull(form){
                              </tr>
                              <tr>
                                 <td colspan="2"><input type="text" name="surveyor" id="ssurveyor" value="<%=c.getSurveyor() %>" placeholder="检验员"></td>
-                                <td colspan="2"><input type="text" name="forester " id="fforester " value="<%=c.getForester() %>" placeholder="林务员"></td>
+                                <td colspan="2"><input type="text" name="forester" id="fforester" value="<%=c.getForester() %>" placeholder="林务员"></td>
                                 <td colspan="2"><input type="text" name="woodmanage" id="wwoodmanage" value="<%=c.getWoodmanage() %>" placeholder="楞厂管理员"></td>
                              </tr>
                             </table>

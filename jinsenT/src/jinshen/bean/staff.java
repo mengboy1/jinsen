@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//员工信息
 import java.sql.Date;
 
 public class staff {

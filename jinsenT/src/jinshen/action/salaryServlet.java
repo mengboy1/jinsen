@@ -1,5 +1,5 @@
 package jinshen.action;
-
+/*销售部门输入木材销售价格页面*/
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -62,6 +62,7 @@ public class salaryServlet extends HttpServlet {
         salemanDao sd=new salemanDaoImpl();
         treeDao td=new treeDaoImpl();
         ObjectMapper mapper = new ObjectMapper();
+        //通过当销售工单号和数据库中一样，查询数据库中的树材信息，然后显示再treePrice.jsp页面
         if(action.equals("mysave"))
         {
         	double workid = Double.parseDouble(request.getParameter("workid"));
@@ -89,7 +90,7 @@ public class salaryServlet extends HttpServlet {
             	//String str="(";
             	//str+=",";
             	sql = "select yard,yarddate,carNumber,surveyor from outyard where workid="+workid+"";
-            	salesman s=sd.findsaleSingle(sql);
+            	salesman s=sd.findsaleSingle(sql);//擦护照sql的数据通过findsaleSingle读取显示，再赋值给s
             	list.add(s);            	
             	//str+=each;
             	//str+=")";
@@ -116,6 +117,7 @@ public class salaryServlet extends HttpServlet {
         	int flag=sd.addWork(cp);
         		out.print("flag"); 
         }*/
+        //保存销售treePrice.jsp页面数据到数据库saleman中
         else if(action.equals("savesaleman")) {
         	String rebate = request.getParameter("newtree");
         	System.out.println("...." + rebate + "...");
@@ -150,6 +152,7 @@ public class salaryServlet extends HttpServlet {
                 	out.print(flag);
             	}
         }
+       //更新再treeprice.jsp页面对木材信息的修改，并把他们保存到数据库表treeout中
         else if("treeAdd".equals(action))
         {
 
@@ -170,6 +173,119 @@ public class salaryServlet extends HttpServlet {
             }
             out.print("更新完成！");
         }
+        //生产业主信息
+        else if("addcustomer".equals(action)) {
+        	double workid=Double.parseDouble(request.getParameter("workid"));
+        	String kname=request.getParameter("kname");
+        	String address=request.getParameter("address");
+        	String company=request.getParameter("company");
+        	String treetype=request.getParameter("treetype");
+        	//System.out.println("...." + treetype + "...");
+        	double num=Double.parseDouble(request.getParameter("num"));
+        	customer cp=new customer();
+        	cp.setWorkid(workid);
+        	cp.setkname(kname);
+        	cp.setaddress(address);
+        	cp.setcompany(company);
+        	cp.setTreetype(treetype);
+        	cp.setNum(num);
+        	int flag=sd.addCustomer(cp);
+        	if(flag>0) {
+        	    out.print("添加信息成功");
+        	    request.getRequestDispatcher("productowner.jsp").forward(request, response);}
+        	else {
+        		out.print("添加信息失败");
+        	}
+        }
+        //发现生产业主信息到并发送到productoy.jsp页面中
+        else if("findcustomer".equals(action)) {
+        	sql="select workid,kname,address,company,treetype,num from customer";
+        	List<customer> ct=sd.findCustomer(sql);
+        	mapper.writeValue(response.getWriter(),ct);
+        }
+        //根据采伐证号显示材积
+        else if(action.equals("account")) {
+    		double cutnum=Double.parseDouble(request.getParameter("cutnum"));
+    		Map map=new HashMap();
+    		List<Laowu> list=new ArrayList<Laowu>();
+    		sql="select count(*) from inyard where cutnum="+cutnum+"";
+    		int flag=sd.findMaxid(sql);
+    		if(flag>0) {
+    			sql="select treetype,sum(tvolume) as total,unitprice,(sum(tvolume)*unitprice) as totalprice  from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		List<worktree> worktree=sd.findworktree(sql);
+        		map.put("tree", worktree);
+        		mapper.writeValue(response.getWriter(), map);
+    		}
+    		else {
+    			sql="select treetype,sum(tvolume) as total,unitprice,(sum(tvolume)*unitprice) as totalprice  from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		List<worktree> worktree=sd.findworktree(sql);
+        		map.put("tree", worktree);
+        		mapper.writeValue(response.getWriter(), map);
+    		}
+    	}
+        //保存材积到laowu表
+        else if(action.equals("saveLaowu")) {
+        	String rebate = request.getParameter("newtree");
+        	int id=Integer.parseInt(request.getParameter("id"));
+        	System.out.println("...." + id + "...");
+        	JSONObject jb = JSONObject.fromObject(rebate);            	
+        	double cutnum=Double.parseDouble(request.getParameter("cutnum"));
+        	double checknum=Double.parseDouble(request.getParameter("checknum"));
+        	String person=request.getParameter("person");
+        	String forperson=request.getParameter("forperson");
+        	String manageUnit=request.getParameter("manageUnit");
+        	double ttvolume=Double.parseDouble(request.getParameter("ttvolume"));
+        	double tprice=Double.parseDouble(request.getParameter("tprice"));
+        	for(int i=0;i<id;i++) {
+        		JSONArray s=jb.getJSONArray(String.valueOf(i));
+        		Laowu cp = new Laowu();
+            	cp.setCutnum(cutnum);
+            	cp.setCheckNum(checknum);
+            	cp.setForperson(forperson);
+            	cp.setManageUnit(manageUnit);
+            	cp.setTreetype(s.getString(0));
+            	cp.setUnitprice(Double.parseDouble(s.getString(1)));
+            	cp.setprice(Double.parseDouble(s.getString(2)));
+            	cp.setPerson(person);
+            	cp.setttvolume(ttvolume);
+            	cp.settprice(tprice);
+            	int flag=sd.addProduce(cp);
+            	out.print(flag);
+        	}
+        }
+      //根据采伐证号显示材积
+        else if(action.equals("savew")) {
+        	double cutnum=Double.parseDouble(request.getParameter("cutnum"));
+        	Map map=new HashMap();
+    		List<singleworkid> list=new ArrayList<singleworkid>();
+    		sql="select count(*) from inyard where cutnum="+cutnum+"";
+    		int flag=sd.findMaxid(sql);
+    		String mygroup = request.getParameter("mygroup");
+        	JSONArray json=JSONArray.fromObject(mygroup); 
+        	if(flag>0 && json.length()==0)
+        	{
+        		sql="select a.workid from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		list=sd.findworkid(sql);
+        		sql="select treetype,sum(tvolume) as total,unitprice,(sum(tvolume)*unitprice) as totalprice  from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		List<worktree> worktree=sd.findworktree(sql);
+        		map.put("work", list);
+        		map.put("tree", worktree);
+        		mapper.writeValue(response.getWriter(), map);
+        	}
+        	else {
+        		double each=0;
+        		String str="(";
+        		str+=")";
+        		sql="select a.workid from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		list=sd.findworkid(sql);
+        		sql="select treetype,sum(tvolume) as total,unitprice,(sum(tvolume)*unitprice) as totalprice  from tree a join inyard b on a.workid=b.workid where b.cutNum="+cutnum+" group by treetype";
+        		List<worktree> worktree=sd.findworktree(sql);
+        		map.put("work", list);
+        		map.put("tree", worktree);
+        		mapper.writeValue(response.getWriter(), map);
+        	}
+        }
+        
         
 	}
 

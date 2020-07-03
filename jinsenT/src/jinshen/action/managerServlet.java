@@ -1,5 +1,5 @@
 package jinshen.action;
-
+/*管理权限和部门人员servlet*/
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;

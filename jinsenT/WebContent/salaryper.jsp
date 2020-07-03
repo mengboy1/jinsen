@@ -14,7 +14,29 @@
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<script src="js/excanvas.min.js"></script> 
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flot.min.js"></script> 
+<script src="js/jquery.flot.resize.min.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+<script src="js/fullcalendar.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.dashboard.js"></script> 
+<script src="js/jquery.gritter.min.js"></script> 
+<script src="js/matrix.interface.js"></script> 
+<script src="js/matrix.chat.js"></script> 
+<script src="js/jquery.validate.js"></script> 
+<script src="js/matrix.form_validation.js"></script> 
+<script src="js/jquery.wizard.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/matrix.popover.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.tables.js"></script> 
 </head>
+
 <body>
 
 <!--Header-part-->
@@ -62,23 +84,9 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 仪表盘</a>
   <ul>
     <li><a href="index.html"><i class="icon icon-home"></i> <span>查验定金</span></a> </li>
-    <li class="active"> <a href="treePrice.jsp"><i class="icon icon-th-list"></i> <span>录入木材销售金额</span></a></li>
+    <li> <a href="treePrice.jsp"><i class="icon icon-th-list"></i> <span>录入木材销售金额</span></a></li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>个人信息维护</span></a> </li>
      <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>财务管理</span></a> </li>
-    <li class="content"> <span>Monthly Bandwidth Transfer</span>
-      <div class="progress progress-mini progress-danger active progress-striped">
-        <div style="width: 77%;" class="bar"></div>
-      </div>
-      <span class="percent">77%</span>
-      <div class="stat">21419.94 / 14000 MB</div>
-    </li>
-    <li class="content"> <span>Disk Space Usage</span>
-      <div class="progress progress-mini active progress-striped">
-        <div style="width: 87%;" class="bar"></div>
-      </div>
-      <span class="percent">87%</span>
-      <div class="stat">604.44 / 4000 MB</div>
-    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -87,7 +95,7 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="hello2.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <div id="breadcrumb"> <a href="salaryper.jsp" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
   </div>
 <!--End-breadcrumbs-->
 
@@ -95,17 +103,10 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>管理系统 </a> </li>
-        <li class="bg_lg span3"> <a href="#"><i class="icon-signal"></i> <span>产销系统</span> <span class="label label-important">2</span></a></li>
-        <li class="bg_ly"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success"></span> 货场管理系统 </a> </li>
-        <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> 生产业主系统</a> </li>
-        <li class="bg_ls"> <a href="grid.html"> <i class="icon-fullscreen"></i> <span class="label label-important">3</span>伐区管理系统</a> </li>
-        <li class="bg_lo span3"> <a href="form-common.html"> <i class="icon-th-list"></i> 信息中心</a> </li>
-        <li class="bg_ls"> <a href="buttons.html"> <i class="icon-tint"></i> 超级管理员</a> </li>
-        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>超级管理员</a> </li>
-        <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> 日历</a> </li>
-        <li class="bg_lr"> <a href="error404.html"> <i class="icon-info-sign"></i> Error</a> </li>
-
+        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>查验定金</a> </li>
+        <li class="bg_lg span3"> <a href="treePrice.jsp"><i class="icon-signal"></i> <span>录入木材销售金额</span></a></li>
+        <li class="bg_ly"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success"></span>个人信息维护 </a> </li>
+        <li class="bg_lo span3"> <a href="tables.html"> <i class="icon-th"></i>财务管理</a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -118,8 +119,10 @@
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
-            <div class="span9">
-              <div class="chart"></div>
+            <div class="span6">
+              <div class="table-con">
+        <table id="table1" class="table-style"></table>
+    </div>
             </div>
             <div class="span3">
               <ul class="site-stats">
@@ -389,28 +392,60 @@
 </div>
 
 <!--end-Footer-part-->
-
-<script src="js/excanvas.min.js"></script> 
-<script src="js/jquery.min.js"></script> 
-<script src="js/jquery.ui.custom.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.flot.min.js"></script> 
-<script src="js/jquery.flot.resize.min.js"></script> 
-<script src="js/jquery.peity.min.js"></script> 
-<script src="js/fullcalendar.min.js"></script> 
-<script src="js/matrix.js"></script> 
-<script src="js/matrix.dashboard.js"></script> 
-<script src="js/jquery.gritter.min.js"></script> 
-<script src="js/matrix.interface.js"></script> 
-<script src="js/matrix.chat.js"></script> 
-<script src="js/jquery.validate.js"></script> 
-<script src="js/matrix.form_validation.js"></script> 
-<script src="js/jquery.wizard.js"></script> 
-<script src="js/jquery.uniform.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/matrix.popover.js"></script> 
-<script src="js/jquery.dataTables.min.js"></script> 
-<script src="js/matrix.tables.js"></script> 
+<script src="js/jquery.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<!-- 销售页面显示销售单号树种表格 -->
+<script>
+    $(function(){
+        table1();
+    })
+    function table1(){
+        $('#table1').bootstrapTable({
+            method: "post",
+            striped: true,
+            singleSelect: false,
+            url: "chartServlet?action=saleman",
+            data:{},
+            dataType: "json",
+            pagination: true, //分页
+            pageSize: 8,
+            pageNumber: 1,
+            search: true, //显示搜索框
+            contentType: "application/x-www-form-urlencoded",
+            showRefresh: true,                      //是否显示刷新按钮
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            detailView: true,
+            columns: [
+            	{
+                    checkbox: "true",
+                    field: 'check',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: "销售单号",
+                    field: 'workid',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '树种',
+                    field: 'treetype',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '售价',
+                    field: 'price',
+                    align: 'center',
+                    valign: 'middle'
+                }
+            ]
+        });
+    }
+    </script>
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to

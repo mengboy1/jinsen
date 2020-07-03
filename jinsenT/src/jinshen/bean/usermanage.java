@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于账户信息
 import java.sql.Date;
 import java.sql.Timestamp;
 
