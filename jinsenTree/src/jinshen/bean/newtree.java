@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//目前没用
 public class newtree {
 	private double year;
 	private double month;

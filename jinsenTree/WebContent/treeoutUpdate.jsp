@@ -299,7 +299,7 @@ function inputNull(form){
                              <td>货场<span></span></td>
                              <td><input type="text" name="yard" id="yyard" value="<%=c.getYard() %>" placeholder="货场"></td>
                              <td>批次号<span></span></td>
-                              <td><input type="text" name="batchnum" id="bbratchum" value="<%=c.getBatchNum() %>" placeholder="批次号"></td>
+                              <td><input type="text" name="batchnum" id="bbratchum" value="<%=c.getBatchNum() %>" placeholder="检尺标准"></td>
                              <td>检尺员<span></span></td>
                              <td><input type="text" name="surveyor" id="ssurveyor" value="<%=c.getSurveyor() %>" placeholder="检尺员"></td>
                             
@@ -344,10 +344,10 @@ function inputNull(form){
                                 <p class="table_p" style="margin-top: 65px;"><span>合计信息</span></p>
                                 <tr >
                                     <td style="font-size:20px;width:auto">合计树材<span></span>
-                                        <input type="text" style="width:120px; font-size:20px" name="toltreesmall" id="toltree" onclick="makecount()">
+                                        <input type="text" style="width:120px; font-size:20px" name="toltree" id="toltree" value="<%=c.getTolTree()%>" onclick="makecount()">
                                     根(块、件)<span></span></td>
                                     <td style="font-size:20px">合计树材<span></span>
-                                        <input type="text" style="width:120px; font-size:20px" name="tolsteresmall" id="tolstere">
+                                        <input type="text" style="width:120px; font-size:20px" name="tolsteresmall" id="tolstere" value="<%=c.getTolStere()%>">
                                    立方米(吨、根)<span></span></td>
                                 </tr>
                                 </tbody>
@@ -368,7 +368,7 @@ function inputNull(form){
                         </div>
                     </div>
                     <div class=" but_p" style="float:left;"><button class="but_save" type="submit" id="mybutton" value="更新工单">更新工单</button>
-                   <button class="but_save" type="button" value="返回" onclick="javascrtpt:window.location.href='treeout2.jsp'">返回添加</button></div>
+                   <button class="but_save" type="button" value="返回" onclick="javascrtpt:window.location.href='treeout.jsp'">返回添加</button></div>
                     <input type="button" id="btnPrint" value="打印"/>   
                 <div style="clear: both;padding-bottom: 40px"></div>
             </form>

@@ -16,6 +16,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
+
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">生产管理平台</a></h1>
@@ -50,6 +51,13 @@
   </ul>
 </div>
 <!--close-top-Header-menu-->
+<%-- 
+<div id="user-nav" class="navbar navbar-inverse">
+<table  class="icon-user">
+<tr><td><%String staff_id = request.getSession().getAttribute("staff_id").toString();%>您好，<%=staff_id %></td></tr>
+</table>
+</div>
+--%>  
 
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 仪表盘</a>
@@ -63,27 +71,13 @@
       </ul>
      </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>异常处理</span></a> </li>
-    <li><a href="tables.html"><i class="icon icon-th"></i> <span>生产结算</span></a></li>
-    <li class="content"> <span>Monthly Bandwidth Transfer</span>
-      <div class="progress progress-mini progress-danger active progress-striped">
-        <div style="width: 77%;" class="bar"></div>
-      </div>
-      <span class="percent">77%</span>
-      <div class="stat">21419.94 / 14000 MB</div>
-    </li>
-    <li class="content"> <span>Disk Space Usage</span>
-      <div class="progress progress-mini active progress-striped">
-        <div style="width: 87%;" class="bar"></div>
-      </div>
-      <span class="percent">87%</span>
-      <div class="stat">604.44 / 4000 MB</div>
-    </li>
+    <li><a href="productPrice.jsp"><i class="icon icon-th"></i> <span>生产结算</span></a></li>
   </ul>
 </div>
 <!--sidebar-menu-->
 
 <!--main-container-part-->
-<div id="content">
+<div id="content"> 
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> <a href="hello2.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
@@ -94,17 +88,18 @@
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>信息通知 </a> </li>
-        <li class="bg_lg span3"> <a href="#"><i class="icon-signal"></i> <span>输入工单</span> <span class="label label-important">2</span></a></li>
-        <li class="bg_ly span3"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success"></span> 查询工单 </a> </li>
+        <li class="bg_lg span3"> <a href="workpageAdd.jsp"><i class="icon-signal"></i> <span>输入工单</span></a></li>
+        <li class="bg_ly span3"> <a href="workpageShenhe.jsp"> <i class="icon-inbox"></i><span class="label label-success"></span>审核工单 </a> </li>
         <li class="bg_lo"> <a href="tables.html"> <i class="icon-info-sign"></i> 异常信息处理</a> </li>
       </ul>
     </div>   
   </div>
-  <!--Chart-box-->    
+  <!--Chart-box-->  
+   
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
-          <h5>木材销售分析</h5>
+          <h5>木材产销分析</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">

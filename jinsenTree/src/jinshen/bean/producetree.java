@@ -1,115 +1,124 @@
 package jinshen.bean;
-
+//砍伐木材进场表格
 public class producetree {
-	private double codeid;
+	private double workid;
 	private double cutNum;//采伐证号
-	private double checkNum;
-	private String entrust;//委托人
-	private String getPerson;//中标人
-	private double salary;
-	private double syear;
-	private double smonth;
-	private double sday;
-	private String takeIn;//收货单位
-	private double statement;//结算单号
+	private double yeart;
+	private double montht;
+	private String cutSite;
+	private String checkSite;
+	private String carNumber;
+	private String yard;
 	private String treetype;
-	private Double unitprice;
-	private String forperson;//劳务承包人
-	private String shipplace;//采伐地点
-	
-	public double getCodeid() {
-		return codeid;
+	private double tlong;
+	private double tradius;
+	private double num;
+	private double tvolume;
+	private String surveyor;
+	private String forester;
+	private String woodmanage;
+   
+	public double getWorkid() {
+		return workid;
 	}
-	public void setCodeid(double codeid) {
-		this.codeid = codeid;
+	public void setWorkid(double workid) {
+		this.workid = workid;
 	}
 	
 	public double getCutNum() {
-		return cutNum;
-	}
-	public void setCutNum(double cutNum) {
-		this.cutNum = cutNum;
-	}
-	public double getCheckNum() {
-		return checkNum;
-	}
-	public void setCheckNum(double checkNum) {
-		this.checkNum = checkNum;
-	}
+	     return cutNum;
+    }
+    public void setCutNum(double cutNum) {
+    	this.cutNum = cutNum;
+    }
 	
-	public String getEntrust() {
-		return entrust;
+	public double  getYear() {
+		return yeart;
 	}
-	public void setEntrust(String entrust) {
-		this.entrust = entrust;
+	public void setYear(double yeart) {
+		this.yeart=yeart;
 	}
-	public String getGetPerson() {
-		return getPerson;
+	public double getMonth() {
+		return montht;
 	}
-	public void setGetPerson(String getPerson) {
-		this.getPerson = getPerson;
+	public void setMonth(double montht) {
+		this.montht=montht;
 	}
-	
-	public double getSalary() {
-		return salary;
-	}
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-	public double getSyear() {
-		return syear;
-	}
-	public void setSyear(Double syear) {
-		this.syear = syear;
-	}
-	public double getSmonth() {
-		return smonth;
-	}
-	public void setSmonth(Double smonth) {
-		this.smonth = smonth;
-	}
-	public double getSday() {
-		return sday;
-	}
-	public void setSday(Double sday) {
-		this.sday = sday;
-	}
-	public String getTakein() {
-		return takeIn;
-	}
-	public void setTakein(String takeIn) {
-		this.takeIn = takeIn;
-	}
-	public double getStatement() {
-		return statement;
-	}
-	public void setStatement(Double statement) {
-		this.statement = statement;
-	}
-	public String getTreetype() {
+	public String getCutSite() {
+    	return cutSite;
+    }
+    public void setCutSite(String cutSite) {
+    	this.cutSite = cutSite;
+    }
+    
+    public String getCheckSite() {
+    	return checkSite;
+    }
+    public void setCheckSite(String checkSite) {
+    	this.checkSite = checkSite;
+    }
+    
+	public String getCarNumber() {
+	     return carNumber;
+    }
+    public void setCarNumber(String carNumber) {
+   	    this.carNumber = carNumber;
+    }
+    public String getYard() {
+ 	   return yard;
+    }
+    public void setYard(String yard) {
+ 	   this.yard = yard;
+    }
+    public String getTreetype() {
 		return treetype;
 	}
 	public void setTreetype(String treetype) {
 		this.treetype = treetype;
 	}
-	public double getUnitprice() {
-		return unitprice;
+	public double getTlong() {
+		return tlong;
 	}
-	public void setUnitprice(double unitprice) {
-		this.unitprice = unitprice;
+	public void setTlong(double tlong) {
+		this.tlong = tlong;
 	}
-	public String getForperson() {
-		return forperson;
+	public double getTradius() {
+		return tradius;
 	}
-	public void setForperson(String forperson) {
-		this.forperson = forperson;
+	public void setTradius(double tradius) {
+		this.tradius = tradius;
 	}
-	public String getShipplace() {
-		return shipplace;
+	public double getNum() {
+		return num;
 	}
-	public void setShipplace(String shipplace) {
-		this.shipplace = shipplace;
+	public void setNum(double num) {
+		this.num = num;
 	}
-
+	public double getTvolume() {
+		return tvolume;
+	}
+	public void setTvolume(double tvolume) {
+		this.tvolume = tvolume;
+	}
+    public String getSurveyor() {
+    	return surveyor;
+    }
+    public void setSurveyor(String surveyor) {
+    	this.surveyor = surveyor;
+    }
+    
+    public String getForester() {
+    	return forester;
+    }
+    public void setForester(String forester) {
+    	this.forester = forester;
+    }
+    
+    public String getWoodmanage() {
+    	return woodmanage;
+    }
+    public void setWoodmanage(String woodmanage) {
+    	this.woodmanage = woodmanage;
+    }
 
 }

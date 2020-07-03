@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//用于工单审核页面显示部分工单信息
 public class codejson {
 
 	private double workid;

@@ -52,5 +52,7 @@
 	<classpathentry kind="lib" path="F:/金森林业/木材产销管理软件/lib/asm-5.2.jar"/>
 	<classpathentry kind="lib" path="F:/金森林业/木材产销管理软件/lib/ant-launcher-1.9.6.jar"/>
 	<classpathentry kind="lib" path="F:/金森林业/木材产销管理软件/lib/ant-1.9.6.jar"/>
+	<classpathentry kind="lib" path="F:/金森林业/木材产销管理软件/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="F:/金森林业/木材产销管理软件/lib/commons-fileupload-1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -9,7 +9,7 @@ html, body{height:100%}
 
 body {
 	overflow-x: hidden;
-	margin-top: -10px; font-family: 'Open Sans', sans-serif; font-size:16px; color:#666;
+	margin-top: -10px; font-family: 'Open Sans', sans-serif; font-size:20px; color:#666;
 }
 a{color:#666;}
 a:hover, a:focus {
@@ -194,7 +194,7 @@ hr{ border-top-color:#dadada;}
 }
 /* Content */
 #content {
-	background: none repeat scroll 0 0 #eeeeee;
+	background: none repeat scroll 0 0 #f9f9f9;
 	margin-left: 220px;
 	margin-right: 0;
 	padding-bottom: 25px;

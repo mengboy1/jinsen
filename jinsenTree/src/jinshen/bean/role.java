@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//员工
 public class role 
 {
 	private int role_num;

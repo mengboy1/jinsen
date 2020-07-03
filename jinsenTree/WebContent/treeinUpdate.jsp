@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="js/jQueryCalendar/calendar.css">
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-
     <!-- font-awesome icons CSS -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome icons CSS-->
@@ -349,21 +346,21 @@ t=(List<tree>)request.getAttribute("tree");
                            </div>
                            </tr>
                             </table>     
-                            <!--  <table class="table" >
+                            <table class="table" >
                                 <tbody>
                                 <p class="table_p" style="margin-top: 65px;"><span>合计信息</span></p>
                                 <tr>
                                     <td style="font-size:20px;width:auto">合计树材<span></span>
-                                        <input type="text" style="width:120px; font-size:20px" name="toltreesmall" id="toltree" onclick="makecount()">根(块、件)<span></span></td>
+                                        <input type="text" style="width:120px; font-size:20px" name="toltree" id="toltree" value="<%=c.getTolTree()%>">根(块、件)<span></span></td>
                                     <td style="font-size:20px">合计树材<span></span>
-                                        <input type="text" style="width:120px; font-size:20px" name="tolsteresmall" id="tolstere">立方米(吨、根)<span></span></td>
+                                        <input type="text" style="width:120px; font-size:20px" name="tolstere" id="tolstere" value="<%=c.getTolStere()%>">立方米(吨、根)<span></span></td>
                                 </tr>
                                 </tbody>
-                            </table>-->
+                            </table>
                         </div>
                     </div>
                   <div class=" but_p" style="float:right;"><button class="but_save" type="submit" id="mybutton" value="更新工单">更新工单</button>
-                 <button style="float:right;" class="but_save" type="button" value="返回" onclick="javascrtpt:window.location.href='treein1.jsp'">返回添加</button></div>
+                 <button style="float:right;" class="but_save" type="button" value="返回" onclick="javascrtpt:window.location.href='treein.jsp'">返回添加</button></div>
                  <input style="float:right;" type="button" id="btnPrint" value="打印"/>   
                 <div style="clear: both;padding-bottom: 40px"></div>
             </form>

@@ -2,6 +2,7 @@ package jinshen.dao;
 
 import java.util.List;
 
+import jinshen.bean.compareVolume;
 import jinshen.bean.inyard;
 import jinshen.bean.outyard;
 import jinshen.bean.tree;
@@ -10,7 +11,7 @@ import jinshen.bean.workpage;
 public interface treeDao {
 
 	public List<tree> findTree(String sql);
-	public int addTree(tree c);
+	public int addTree(tree c);//
 	public tree findTreeSingle(String sql);
 	public int delById(String sql);
 	public int updateTree(tree c);
@@ -29,4 +30,5 @@ public interface treeDao {
 	public outyard findOutSingle(String sql);
 	public int updateWork(String sql);
 	
+	public compareVolume findVolume(String sql);//砍伐证的材积与输入材积和进行比较
 }

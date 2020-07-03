@@ -1,5 +1,5 @@
 package jinshen.bean;
-
+//显示再treePrice.jsp页面木材类型，材积等信息，对象
 public class worktree {
 	private String type;
 	private double tvolume;
